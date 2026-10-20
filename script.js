@@ -2,44 +2,44 @@ const $ = (id) => document.getElementById(id);
 const numbersInput = $("numbersInput"), categorySelect = $("categorySelect"), algorithmSelect = $("algorithmSelect"), targetInput = $("targetInput"), targetWrap = $("targetWrap"), visualization = $("visualization"), message = $("message");
 let values = [], steps = [], stepIndex = -1;
 const algorithms = {
-linear:{title:"Linear Search",time:"O(n)",space:"O(1)",note:"Checks each item from left to right until the target is found or the list ends.",code:`function linearSearch(arr, target) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === target) return i;
-  }
-  return -1;
-}`},
-binary:{title:"Binary Search",time:"O(log n)",space:"O(1)",note:"Repeatedly halves a sorted list. This visualizer sorts a copy first.",code:`function binarySearch(arr, target) {
-  arr = [...arr].sort((a, b) => a - b);
-  let left = 0, right = arr.length - 1;
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-    if (arr[mid] === target) return mid;
-    if (arr[mid] < target) left = mid + 1;
-    else right = mid - 1;
-  }
-  return -1;
-}`},
-bubble:{title:"Bubble Sort",time:"O(n²)",space:"O(1)",note:"Compares neighboring values and swaps them when they are in the wrong order.",code:`function bubbleSort(arr) {
-  arr = [...arr];
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length - i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
-        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-      }
+linear:{title:"Linear Search",time:"O(n)",space:"O(1)",note:"Checks each item from left to right until the target is found or the list ends.",code:`int linearSearch(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) return i;
     }
-  }
-  return arr;
+    return -1;
 }`},
-selection:{title:"Selection Sort",time:"O(n²)",space:"O(1)",note:"Finds the smallest value in the unsorted part and moves it to the front.",code:`function selectionSort(arr) {
-  arr = [...arr];
-  for (let i = 0; i < arr.length; i++) {
-    let min = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] < arr[min]) min = j;
+binary:{title:"Binary Search",time:"O(log n)",space:"O(1)",note:"Repeatedly halves a sorted list. This visualizer sorts a copy first.",code:`// The array must be sorted before calling this function.
+int binarySearch(int arr[], int n, int target) {
+    int left = 0, right = n - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) return mid;
+        if (arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
     }
-    [arr[i], arr[min]] = [arr[min], arr[i]];
-  }
-  return arr;
+    return -1;
+}`},
+bubble:{title:"Bubble Sort",time:"O(n²)",space:"O(1)",note:"Compares neighboring values and swaps them when they are in the wrong order.",code:`void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}`},
+selection:{title:"Selection Sort",time:"O(n²)",space:"O(1)",note:"Finds the smallest value in the unsorted part and moves it to the front.",code:`void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) minIndex = j;
+        }
+        int temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
 }`}
 };
 function parseValues(){
