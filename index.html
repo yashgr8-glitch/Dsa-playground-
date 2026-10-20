@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A beginner-friendly interactive DSA Playground for searching and sorting algorithms." />
+  <title>DSA Playground</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><span class="brand-icon">⌘</span><span>DSA <strong>Playground</strong></span></div>
+    <span class="header-tag">LEARN BY DOING</span>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">DATA STRUCTURES & ALGORITHMS</p>
+      <h1>Understand algorithms.<br /><span>One step at a time.</span></h1>
+      <p class="hero-copy">Try searching and sorting algorithms, watch each step, and explore their complexity.</p>
+    </section>
+    <section class="panel controls-panel" aria-labelledby="controls-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">INTERACTIVE LAB</p><h2 id="controls-title">Choose your experiment</h2></div>
+        <button id="randomBtn" class="button button-secondary" type="button">↻ Random numbers</button>
+      </div>
+      <label for="numbersInput">Numbers (comma-separated)</label>
+      <input id="numbersInput" type="text" value="34, 12, 8, 45, 23, 17, 5" autocomplete="off" spellcheck="false" />
+      <div class="control-grid">
+        <div><label for="categorySelect">Category</label><select id="categorySelect"><option value="search">Searching</option><option value="sort">Sorting</option></select></div>
+        <div><label for="algorithmSelect">Algorithm</label><select id="algorithmSelect"><option value="linear">Linear Search</option><option value="binary">Binary Search</option></select></div>
+      </div>
+      <div id="targetWrap"><label for="targetInput">Target number</label><input id="targetInput" type="number" value="23" inputmode="numeric" /></div>
+      <div class="button-row">
+        <button id="runBtn" class="button button-primary" type="button">▶ Run algorithm</button>
+        <button id="stepBtn" class="button button-secondary" type="button">Next step →</button>
+        <button id="resetBtn" class="button button-ghost" type="button">Reset</button>
+      </div>
+      <p id="message" class="message" role="status" aria-live="polite">Ready when you are. Choose an algorithm and press Run.</p>
+    </section>
+    <section class="panel visual-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">LIVE VISUALIZATION</p><h2 id="visualTitle">Linear Search</h2></div>
+        <span id="stepCounter" class="step-pill">Step 0</span>
+      </div>
+      <div id="visualization" class="visualization" aria-label="Algorithm visualization"></div>
+      <div class="legend">
+        <span><i class="legend-dot dot-default"></i>Unvisited</span><span><i class="legend-dot dot-active"></i>Current</span><span><i class="legend-dot dot-found"></i>Found / sorted</span><span><i class="legend-dot dot-checked"></i>Checked</span>
+      </div>
+    </section>
+    <section class="info-grid">
+      <article class="panel complexity-panel">
+        <p class="eyebrow">PERFORMANCE</p><h2>Complexity</h2>
+        <div class="complexity-row"><span>Time complexity</span><strong id="timeComplexity">O(n)</strong></div>
+        <div class="complexity-row"><span>Space complexity</span><strong id="spaceComplexity">O(1)</strong></div>
+        <p id="complexityNote" class="muted">Checks items one by one until the target is found.</p>
+      </article>
+      <article class="panel code-panel">
+        <div class="section-heading code-heading"><div><p class="eyebrow">UNDER THE HOOD</p><h2>Algorithm source code</h2></div><button id="copyBtn" class="button button-secondary button-small" type="button">Copy code</button></div>
+        <pre><code id="sourceCode"></code></pre><p id="copyMessage" class="muted small-text"></p>
+      </article>
+    </section>
+    <footer><span>Built for curious minds.</span><span>DSA Playground · Version 1.0</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
